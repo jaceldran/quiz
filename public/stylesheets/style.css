@@ -1,6 +1,7 @@
 * {
 	margin:0; padding: 0;
 }
+
 body {
 	font: 16px georgia,serif;
 }
@@ -33,4 +34,12 @@ footer {
 
 nav span {
 	margin: 0px 10px 0px 10px;
+}
+
+
+.tag {
+	border-radius: 3px;
+	background-color: #333;
+	color: #ddd;
+	padding: 0 .25em;
 }

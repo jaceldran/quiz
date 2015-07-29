@@ -3,7 +3,14 @@ body {
 }
 
 #page-wrap:after {
-	content: "Layout: WIDE"
+	content: "Layout [wide]";
+	border-radius: 3px;
+	background-color: #ffd;
+	color: #c00;
+	font-size: medium;
+	margin: .25em;
+	padding: 0 .25em;
+	float: right;
 }
 
 nav {

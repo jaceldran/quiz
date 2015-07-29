@@ -3,7 +3,14 @@ body {
 }
 
 #page-wrap:after {
-	content: "Layout: SMARTPHONE"
+	content: "Layout [smartphone]";
+	border-radius: 3px;
+	background-color: #ffd;
+	color: #c00;
+	font-size: medium;
+	margin: .25em;
+	padding: 0 .25em;
+	float: right;
 }
 
 h2 span, section h3 {
