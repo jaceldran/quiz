@@ -30,12 +30,31 @@
 		
 			<nav class="main" id="n1" role="navigation">
 				<span><a href="/">Inicio</a></span>
-				<span><a href="/quizes/question">Preguntas</a></span>
+				<span><a href="/quizes">Preguntas</a></span>
 				<span><a href="/author">Créditos</a></span>
 			</nav>
 			
 			<section class="main" id="s1">
-			<%- body %>
+			
+			<% if (errors.length) { %> 			
+				<div class="box error" id="ErrorMsgs">				
+				
+					<p><u>Corregir errores:</u></p>
+					
+					
+					<% for (var i in errors) { %>
+						<p>
+							&raquo; <%= errors[i].message %>
+						</p>
+					<% } %> 
+					
+				</div>			
+			<% } %> 
+			
+			<div>
+				<%- body %>
+			</div>
+			
 			</section>	
 			
 			<footer class="main" id="f1">
@@ -43,16 +62,17 @@
 					href="http://es.wikipedia.org/wiki/Quiz">
 					¿Qué es un <em>Quiz</em>?
 				</a>
-				|			
-				<a target="_blank" href="https://github.com/jaceldran/quiz">
-					Proyecto en GitHub
-				</a>
-				<div>
-					<small>
+				<div class="sep">
+					<small>						
 						Versión actual: 
 							<span class="tag">
-								Despliegue DB en Heroku
-							</span>
+								P2P módulo 8
+							</span> &nbsp;
+						|						
+						<a target="_blank" href="https://github.com/jaceldran/quiz">
+							Proyecto en GitHub
+						</a>
+							
 					</small>
 				</div>
 			</footer>

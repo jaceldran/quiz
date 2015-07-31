@@ -3,20 +3,20 @@ body {
 }
 
 #page-wrap:after {
-	content: "Layout [wide]";
-	border-radius: 3px;
-	background-color: #ffd;
-	color: #c00;
-	font-size: medium;
+	content: "[wide]";
+	font-size: medium;	
 	margin: .25em;
-	padding: 0 .25em;
-	float: right;
+	border-radius: 3px;
+	display: inline-block;
+	background-color: #c00;
+	color: #eee;
+	padding: .1em .25em;	
 }
 
 nav {
 	float: left;
 	width: 15%;
-	height: 200px;
+	height: 400px;
 }
 
 nav span {
@@ -26,7 +26,7 @@ nav span {
 section {
 	float: right;
 	width: 80%;
-	height: 200px;
+	height: 400px;
 }
 
 footer {

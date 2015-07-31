@@ -1,0 +1,15 @@
+<h1 class="tag">
+	Pregunta <%= quiz.id %>
+</h1>
+
+<form method="get" action="/quizes/<%= quiz.id %>/answer">
+
+	<p><u>Pregunta</u>:</p> 
+	
+	<p><big><em>¿ <%= quiz.pregunta %> ? </em></big></p>
+
+	<input type="text" name="respuesta" value="Respuesta" />
+	
+	<input type="submit" value="Enviar" />
+	
+</form>

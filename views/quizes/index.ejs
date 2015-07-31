@@ -1,0 +1,42 @@
+<h1 class="tag">Índice de preguntas</h1>
+
+<table>
+
+<% var i; for (i=0; i<quizes.length; i++) {  %>
+
+<tr>
+	<td>
+		<%= quizes[i].tema_text %>
+	</td>
+	<td>
+		<a href="quizes/<%= quizes[i].id %>">
+			<%= quizes[i].pregunta %>
+		</a>
+	</td>
+	<td width="1%">
+		<a href="/quizes/<%= quizes[i].id %>/edit">
+			<button type="buton">
+				editar
+			</button>
+		</a>
+	</td>
+	<td width="1%">
+		<form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
+			<button type="submit" onClick="return confirm('¿Borrar pregunta?\n\n<%= quizes[i].pregunta %>')">
+				borrar
+			</button>
+		</form>
+	</td>
+</tr>
+
+<% } %>
+
+</table>
+
+<p><hr></p>
+
+<p><a href="/quizes/new">
+	<button type="button">
+		Crear pregunta
+	</button>
+</a></>

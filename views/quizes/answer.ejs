@@ -1,3 +1,19 @@
-<p>
-	<%= respuesta %>
-</p>
+<h1 class="tag">Resultado</h1>
+
+<label>Pregunta</label>
+<div class="box"><%= quiz.pregunta %></div>
+
+<label>Respuesta dada</label>
+<div class="box"><%= respuesta %></div>
+
+<label>Resultado</label>
+<div class="box"><big><strong><%= resultado %></strong></big></div>
+
+
+<p><hr></p>
+	
+	<a href="/quizes/<%= quiz.id %>">
+		<button type="button">
+			Volver
+		</button>	
+	</a>

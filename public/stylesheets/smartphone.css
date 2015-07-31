@@ -3,14 +3,14 @@ body {
 }
 
 #page-wrap:after {
-	content: "Layout [smartphone]";
-	border-radius: 3px;
-	background-color: #ffd;
-	color: #c00;
-	font-size: medium;
+	content: "[smartphone]";
+	font-size: medium;	
 	margin: .25em;
-	padding: 0 .25em;
-	float: right;
+	border-radius: 3px;
+	display: inline-block;
+	background-color: #c00;
+	color: #eee;
+	padding: .1em .25em;
 }
 
 h2 span, section h3 {
@@ -23,4 +23,13 @@ body {
 
 footer, input {
 	font-size: large;
+}
+
+/*
+ * .rem se aplica p.e. a los labels de formularios donde
+ * que se suelen cargar en el valor por eso se pueden ocultar
+ */
+
+.rem {
+	display:none;
 }

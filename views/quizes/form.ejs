@@ -1,0 +1,55 @@
+
+	<p>
+		<label for="preg" class="rem">Pregunta:</label>	
+		<input type="text" id="preg" 
+			placeholder="Pregunta"
+			name="quiz[pregunta]" 
+			value="<%= quiz.pregunta %>">
+	</p>
+	
+	<p>
+		<label for="resp" class="rem">Respuesta:</label>	
+		<input type="text" id="resp" 
+			placeholder="Respuesta"
+			name="quiz[respuesta]" 
+			value="<%= quiz.respuesta %>">
+	</p>
+
+	<p>
+		<label for="input-tema" class="rem">Tema:</label>	
+		<select name="quiz[tema]" id="input-tema">
+	
+		<%
+			var oo = [
+				{text:'Otro', value: 'otro'}
+				, {text:'Humanidades', value: 'humanidades'}
+				, {text:'Ocio', value: 'ocio'}
+				, {text:'Ciencia', value: 'ciencia'}
+				, {text:'Teconología', value: 'teconologia'}
+			];
+		
+			for (var i=0; i < oo.length; i++) { 
+			
+				oo[i].selected = (oo[i].value===quiz.tema)
+					? 'selected="selected"' 
+					:'';
+				
+				
+		%>	
+		
+		<option <%= oo[i].selected %> value="<%= oo[i].value %>"><%= oo[i].text %></option>
+		
+		<% } %>
+		
+		</select>
+	</p>		
+	
+	<p>	
+		<a href="/quizes">
+			<button type="button">Cancelar</button>
+		</a>
+		
+		<input type="submit" value="Salvar" />
+	
+	</p>
+	
