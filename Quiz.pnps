@@ -1,1 +1,1 @@
-<pd><ViewState><e p="Quiz" x="false"></e></ViewState></pd>
+<pd><ViewState><e p="Quiz" x="true"></e><e p="Quiz\views" x="true"></e><e p="Quiz\controllers" x="true"></e><e p="Quiz\public" x="true"></e><e p="Quiz\views\quizes" x="true"></e><e p="Quiz\models" x="true"></e><e p="Quiz\public\images" x="true"></e><e p="Quiz\public\stylesheets" x="true"></e><e p="Quiz\routes" x="true"></e></ViewState></pd>
