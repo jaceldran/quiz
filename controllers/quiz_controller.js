@@ -146,7 +146,23 @@ exports.answer = function (req, res) {
 // GET /quizes
 
 exports.index = function (req, res) {	
-	models.Quiz.findAll()
+
+	// si recibe query de búsqueda, componer oSearch
+	// para pasar al método findAll()
+
+	var oQuery = {
+		order: [['pregunta','ASC']]
+	};
+	
+	if (req.query.search)
+	{
+		var search = '%' +  req.query.search.replace(/ /g, '%') + '%';
+		oQuery.where = ["pregunta like ?", search];		
+	}	
+
+	// aplicar búsqueda 	
+
+	models.Quiz.findAll(oQuery)
 	.then ( 
 		function(quizes) {
 		
@@ -165,11 +181,17 @@ exports.index = function (req, res) {
 				quizes[index].tema_text =  texts[quizes[index].tema];
 			}
 		
-			res.render('quizes/index', {quizes: quizes, errors: []});
+			res.render('quizes/index', {
+				quizes: quizes
+				, errors: []
+				, search: req.query.search || ''
+			});
 		}
 	).catch ( 
 		function error() { 
 			next(error); 
 		} 
 	);
+	
+	
 };

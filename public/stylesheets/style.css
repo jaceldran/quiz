@@ -153,3 +153,27 @@ input[type="text"], select {
 	margin: .25em 0;
 	padding: .25em 1em;
 }
+
+.float-left {
+	float: left;
+}
+
+/*
+ * formulario de búsquedas en pagina quizes/index
+ */
+
+#form-search input[name="search"] {	
+	border-width: 1px 0 1px 1px;
+	border-radius: 3px 0 0 3px;
+	height: 40px !important;
+	vertical-align: top;
+}
+
+#form-search input[type="submit"] {
+	background-color: #eee;
+	border: 1px solid #ccc;
+	border-radius: 0 3px 3px 0;
+	border-width: 1px 1px 1px 0;
+	height: 40px !important;
+	vertical-align: top;
+}

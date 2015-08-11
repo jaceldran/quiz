@@ -1,5 +1,23 @@
 <h1 class="tag">Índice de preguntas</h1>
 
+<table class="transparent"><tr>
+
+	<td>
+		<a href="/quizes/new">
+			<button type="button">
+				Crear pregunta
+			</button>
+		</a>	
+	</td>
+
+	<td align="right">
+		<form id="form-search">
+			<input type="text" name="search" value="<%= search %>"><input type="submit" value="buscar">
+		</form>
+	</td>
+
+</tr></table>
+
 <table>
 
 <% var i; for (i=0; i<quizes.length; i++) {  %>
@@ -32,11 +50,3 @@
 <% } %>
 
 </table>
-
-<p><hr></p>
-
-<p><a href="/quizes/new">
-	<button type="button">
-		Crear pregunta
-	</button>
-</a></>
