@@ -158,9 +158,7 @@ exports.index = function (req, res) {
 	{
 		req.query.search = decodeURIComponent(req.query.search);
 		var search = '%' +  req.query.search.replace(/ /g, '%') + '%';
-		oQuery.where = ["pregunta like ?", search];		
-		//oQuery.where = { pregunta: {$iLike: search} };		
-console.log('[DEBUG] ' + oQuery);		
+		oQuery.where = ["pregunta like ?", search];
 	}	
 
 	// aplicar búsqueda 	
