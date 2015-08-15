@@ -1,0 +1,17 @@
+<h1 class="tag">Añadir comentario</h1>
+
+<br><label>Pregunta</label>
+<div class="box"><%= quiz.pregunta %></div>
+
+<form method="post" action="/quizes/<%= quiz.id %>/comments">
+	
+<p>	
+	<label for="input-comentario" class="rem">Comentario:</label>	
+	<textarea id="input-comentario" name="comment[texto]"></textarea>
+<p>
+
+	<p>			
+		<input type="submit" value="Enviar" />	
+	</p>
+
+</form>

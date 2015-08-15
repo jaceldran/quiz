@@ -1,4 +1,4 @@
-var models = require('../models/models.js')
+var models = require('../models/models.js');
 
 // DELETE /quizes/:id
 // borrar el recurso
@@ -30,6 +30,7 @@ exports.update = function (req, res) {
 		if (err) {
 			res.render('quizes/edit', {
 				quiz: req.quiz
+				, title: 'Quiz: Actualizar pregunta'
 				, errors: err.errors
 			});
 		} else {
@@ -59,6 +60,7 @@ exports.create = function (req, res) {
 		if (err) {
 			res.render('quizes/new', {
 				quiz: quiz
+				, title: 'Quiz: Crear pregunta'
 				, errors: err.errors
 			});
 		} else {
@@ -77,7 +79,11 @@ exports.create = function (req, res) {
 exports.edit = function(req, res) {
 	var quiz = req.quiz; // pq hay un autoload de quiz
 	
-	res.render('quizes/edit', {quiz: quiz, errors: []});
+	res.render('quizes/edit', {
+		quiz: quiz
+		, title: 'Quiz: Editar pregunta ' + quiz.id
+		, errors: []
+	});
 };
 
 // GET /quizes/new
@@ -88,13 +94,28 @@ exports.new = function(req, res) {
 		, respuesta: ''
 	});
 	
-	res.render('quizes/new', {quiz: quiz, errors: []});
+	res.render('quizes/new', {
+		quiz: quiz
+		, title: 'Quiz: Crear pregunta'
+		, errors: []
+	});
 };
 
 // autoload - factoriza el código si ruta incluye :quizId
 
 exports.load = function(req, res, next, quizId) {
-	models.Quiz.find(quizId)
+
+	// ajustar para que cuando cargue el quizId incorpore 
+	// sus comentarios vinculados
+
+	models.Quiz.find({
+		where: {
+			id: Number(quizId)
+		}
+		, include: [
+			{model: models.Comment}
+		]
+	})
 	.then (
 		function(quiz) {
 			if (quiz) {
@@ -117,7 +138,11 @@ exports.load = function(req, res, next, quizId) {
 
 exports.show = function (req, res) {	
 	models.Quiz.find(req.params.quizId).then(function(quiz) {
-		res.render('quizes/show', {quiz: quiz, errors: []});
+		res.render('quizes/show', {
+			quiz: req.quiz
+			, title: 'Quiz: Pregunta ' + quiz.id
+			, errors: []
+		});
 	});
 };
 
@@ -135,6 +160,7 @@ exports.answer = function (req, res) {
 		
 		res.render(	'quizes/answer', {
 			quiz: quiz
+			, title: 'Quiz: Resultado pregunta ' + quiz.id
 			, resultado:  resultado // resultado 
 			, respuesta:  respuesta // respuesta dada
 			, errors: []
@@ -147,17 +173,21 @@ exports.answer = function (req, res) {
 
 exports.index = function (req, res) {	
 
-	// si recibe query de búsqueda, componer oSearch
-	// para pasar al método findAll()
+	// por defecto se configura la query para ordenar
+	// alfabéticamente por pregunta, independientemente
+	// de si se realiza o no una búsqueda.
 
 	var oQuery = {
 		order: [['pregunta','ASC']]
 	};
-	
+
+	// si recibe query de búsqueda, componer oSearch
+	// para pasar al método findAll()
+
 	if (req.query.search)
 	{
 		req.query.search = decodeURIComponent(req.query.search);
-		var search = '%' +  req.query.search.replace(/ /g, '%') + '%';
+		var search = '%' +  req.query.search.replace(/\s/g, '%') + '%';
 		oQuery.where = ["pregunta like ?", search];
 	}	
 
@@ -184,6 +214,7 @@ exports.index = function (req, res) {
 		
 			res.render('quizes/index', {
 				quizes: quizes
+				, title: 'Quiz: Preguntas'
 				, errors: []
 				, search: req.query.search || ''
 			});

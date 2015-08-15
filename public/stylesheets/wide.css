@@ -1,5 +1,5 @@
 body {
-	background: #999;
+	background: #999;	
 }
 
 #page-wrap:after {
@@ -13,21 +13,20 @@ body {
 	padding: .1em .25em;	
 }
 
+
 nav {
 	float: left;
 	width: 15%;
-	height: 400px;
-}
-
-nav span {
-	margin: 0px 100px 0px 0px;
 }
 
 section {
-	float: right;
-	width: 80%;
-	height: 400px;
+	float: right;	
+	width: 80%;	
 }
+
+/*nav span {
+	margin: 0px 100px 0px 0px;
+}*/
 
 footer {
 	clear: both;

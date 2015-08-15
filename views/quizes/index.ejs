@@ -14,7 +14,9 @@
 		<form id="form-search">
 			<input type="text" name="search" value="<%= search %>"><input type="submit" value="buscar">
 		</form>
-		<small>las búsquedas diferencian entre mayúsculas y minúsculas</small>
+		<small class="resaltado">
+			las búsquedas diferencian entre mayúsculas y minúsculas
+		</small>
 	</td>
 
 </tr></table>
@@ -25,27 +27,35 @@
 
 <tr>
 	<td>
-		<%= quizes[i].tema_text %>
-	</td>
-	<td>
 		<a href="quizes/<%= quizes[i].id %>">
 			<%= quizes[i].pregunta %>
-		</a>
+		</a>		
 	</td>
-	<td width="1%">
+
+	<td class="wauto">
+		<span class="tag"><%= quizes[i].tema_text %></span>
+	</td>
+	
+	<% if(session.user)  { %>
+	
+	<td class="wauto">
 		<a href="/quizes/<%= quizes[i].id %>/edit">
 			<button type="buton">
 				editar
 			</button>
 		</a>
 	</td>
-	<td width="1%">
+	
+	<td class="wauto">
 		<form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
 			<button type="submit" onClick="return confirm('¿Borrar pregunta?\n\n<%= quizes[i].pregunta %>')">
 				borrar
 			</button>
 		</form>
 	</td>
+	
+	<% } %>
+	
 </tr>
 
 <% } %>

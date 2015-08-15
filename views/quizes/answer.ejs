@@ -4,16 +4,16 @@
 <div class="box"><%= quiz.pregunta %></div>
 
 <label>Respuesta dada</label>
-<div class="box"><%= respuesta %></div>
+<div class="box"><%= respuesta||'-' %></div>
 
 <label>Resultado</label>
-<div class="box"><big><strong><%= resultado %></strong></big></div>
+<div class="box"><big class="resaltado <%=resultado.toLowerCase()%>"><strong><%= resultado %></strong></big></div>
 
 
 <p><hr></p>
 	
 	<a href="/quizes/<%= quiz.id %>">
 		<button type="button">
-			Volver
+			&laquo; Volver
 		</button>	
 	</a>

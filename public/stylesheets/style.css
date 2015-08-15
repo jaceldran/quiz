@@ -1,14 +1,22 @@
+
+/*
+ * todo el estilo es mejorable en general
+ * pero se respeta la mayoría de los estilos establecidos
+ * por el material de estudio
+ *
+ */
+
 * {
 	margin:0; 
 	padding: 0;	
 }
 
-body, input, button, select {
+body, input, button, select, textarea, .comment pre {
 	font: 16px georgia,serif;
 }
 
 #page-wrap {
-	margin: 2% auto;
+	margin: 0% auto; /* no me gusta el margen superior */
 	color: white;
 }
 
@@ -97,13 +105,24 @@ table {
 	width: 100%;
 }
 
+td {
+	vertical-align: top;
+}
+
 p {
 	margin: 1em 0;
 }
 
-td {
+td,th {
 	border-bottom: 1px dotted #ccc;	
-	padding: .25em .5em;
+	padding: .25em .5em;	
+}
+
+th {
+	background-color: #f9f9f9;
+	vertical-align: bottom;
+	border: 1px double #ccc;
+	border-width: 0 0 3px 0;
 	
 }
 
@@ -128,15 +147,22 @@ input[type="submit"], button {
 	margin: 0;
 	padding: 0 .5em;	
 	height: 2.8em;
+	
+	text-transform: lowercase;
 }
 
-input[type="text"], select {
+input[type="text"], input[type="password"], select, textarea {
 	border: 1px solid #ccc;
 	cursor: pointer;
 	margin: 0;
 	padding: 0 .5em;
 	width: 70%;
 	height: 2.5em;
+}
+
+textarea {
+	height: 100px;
+	padding: .5em;
 }
 
 .tag {
@@ -158,6 +184,30 @@ input[type="text"], select {
 	float: left;
 }
 
+.float-right {
+	float: right;
+}
+
+.resaltado {
+	border-radius: 3px;	
+	background: #ffc;
+	display: inline-block;
+	padding: .25em .5em; 
+	margin: .25em; 
+}
+
+/*
+ * página de resultado de respuesta
+ */
+
+.correcto {
+	color: #090;
+}
+
+.incorrecto {
+	color: #c00;
+}
+
 /*
  * formulario de búsquedas en pagina quizes/index
  */
@@ -176,4 +226,38 @@ input[type="text"], select {
 	border-width: 1px 1px 1px 0;
 	height: 40px !important;
 	vertical-align: top;
+}
+
+/*
+ * listas de comentarios
+ */
+ 
+tr.publicado-false {
+	background-color: #FFECEC;
+} 
+ 
+td.wauto {
+	width: 1%;
+	white-space: nowrap;
+} 
+  
+.count {	
+	background-color:#f9f9f9;
+	border: 1px solid #d9d9d9;
+	border-radius: 1em;
+	color: #666;
+	display: inline-block;
+	font-weight: bold;
+	padding: 0 .3em;
+}
+ 
+.comment {	
+	border-bottom: 1px dotted #ccc;
+	margin: .25em 0;
+	padding: .25em;
+} 
+.comment .creado {	
+	color: #999;
+	font-size: small;	
+	padding: .25em;
 }

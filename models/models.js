@@ -29,20 +29,20 @@ var sequelize = new Sequelize(DB_name, user, pwd,
   }      
 );
 
-/*// usar bbdd sqlite
-var config = {
-	dialect: 'sqlite'
-	, storage: 'quiz.sqlite'
-};
-var sequelize = New Sequelize(null, null, null, config);*/
+// importar definiciones de tablas (models/...)
 
-// importar definición de tabla Quiz (models/quiz.js)
+var Quiz = sequelize.import(path.join(__dirname, 'quiz'));
+var Comment = sequelize.import(path.join(__dirname, 'comment'));
 
-var Quiz = sequelize.import(path.join(__dirname,'quiz'));
+// configurar relaciones
 
-// exportar definicion de tabla Quiz
+Comment.belongsTo(Quiz);
+Quiz.hasMany(Comment);
+
+// exportar definiciones de tablas
 
 exports.Quiz = Quiz;
+exports.Comment = Comment;
 
 // crea e inicializa la tabla de preguntas en la bd
 sequelize.sync().then(function() {
@@ -61,8 +61,7 @@ sequelize.sync().then(function() {
 			})
 			.then(function(){
 				console.log('Base de datos inicializada')
-			});
-			
+			});			
 		}		
 	});
 });

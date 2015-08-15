@@ -4,12 +4,135 @@
 
 <form method="get" action="/quizes/<%= quiz.id %>/answer">
 
-	<p><u>Pregunta</u>:</p> 
+	<p><u>Pregunta</u></p>
 	
-	<p><big><em>¿ <%= quiz.pregunta %> ? </em></big></p>
+	<div>
+		<big><strong><em>¿ <%= quiz.pregunta %> ? </em></strong></big>
+	</div>
+	
+	<div>	
+		<small class="resaltado">
+			las respuestas diferencian entre mayúsculas y minúsculas.
+		</small>
+	</div>
 
-	<input type="text" name="respuesta" value="Respuesta" />
-	
-	<input type="submit" value="Enviar" />
+	<p>
+		<input type="text" name="respuesta" placeholder="Respuesta" />	
+		<input type="submit" value="Enviar" />
+	</p>
 	
 </form>
+
+<p><hr></p>
+
+
+<% if (quiz.Comments.length === 0) { %>
+
+	<div class="box">No hay comentarios registrados.</div>
+
+<% } else { %>
+
+	<% 	var data = [];
+
+		var meses = ['enero','febrero','marzo','abril','mayo','junio'
+			,'julio','agosto','septiembre','octubre','noviembre','diciembre'];
+	
+		for ( index in quiz.Comments )  {
+		
+			// calcular valores para renderizar más adelante
+		
+ 			var comment = quiz.Comments[index]; 
+			
+			var d = new Date(comment.createdAt);
+			
+			comment._creado = d.getDate() 
+				+ '/' + meses[d.getMonth()].substr(0,3)
+				+ '/' + d.getFullYear()
+				+ ' ' + d.getHours() + ':' + d.getMinutes();
+				
+			comment._texto =  comment.texto;
+			
+			// el comentario es visible si está publicado
+			// o si es un usuario con logado
+			// si es así, se ajusta si procede incluir el botón publicar
+			// y se registra en data para completar la vista más adelante
+			
+			comment._visible = (comment.publicado || session.user) ? true : false;
+
+			if (!comment._visible) {
+				continue;
+			}
+
+			// el botón de publicar es visible si es un usuario
+			// logado y no está publicado aún
+			
+			comment._publicar = 
+				(!comment.publicado && session.user) ? true : false;
+				
+			// registrar comentarios visibles
+			
+			data.push(comment);	
+		
+		}
+		
+	%>
+
+
+	<% if (data.length===0)  { %>
+	
+		<div class="box">No hay comentarios.</div>
+		
+	<% } else {%>	
+
+		<p><strong>
+			Comentarios <span class="count"> <%= data.length %></span> 		
+		</strong></p>
+		
+		<table>
+		
+		<% for (index in data) {
+		
+			var comment = data[index]; %>
+			
+			<tr class="comment publicado-<%=comment.publicado%>">
+				<td class="wauto"><span class="count"><%= Number(index)+1 %></span></td>
+				<td>
+					<div class="texto"><%- comment._texto.replace(/\n/g,'<br>') %></div>
+					<div class="creado"><%= comment._creado %></div>
+				</td>
+
+				<td class="wauto" align="right">
+
+				<% if (comment._publicar) { %>				
+					<a href="/quizes/<%=quiz.id%>/comments/<%=comment.id%>/publish">
+						<button>Publicar</button>
+					</a>
+				<% } %>
+
+				<% if (session.user && comment.publicado) { %>					
+					<a href="/quizes/<%=quiz.id%>/comments/<%=comment.id%>/unpublish">
+						<button>No publicar</button>
+					</a>
+				<% } %>
+				
+				</td>	
+
+			</tr>
+			
+		<% } %>
+		
+		</table>		
+	
+	<% } %>
+
+<% } %>
+
+	<p><hr></p>
+
+	<p>
+		<a href="/quizes/<%= quiz.id %>/comments/new">
+			<button>
+				Nuevo comentario
+			</button>
+		</a>
+	</p>
