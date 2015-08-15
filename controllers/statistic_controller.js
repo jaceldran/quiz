@@ -44,7 +44,7 @@ exports.compute = function(req, res, next) {
 			res.counts['Total preguntas'] =counts.quizes;
 			res.counts['Total comentarios'] = counts.comments;
 			res.counts['Comentarios publicados'] = counts.published;
-			res.counts['Comentarios no publicados'] = counts.published;
+			res.counts['Comentarios no publicados'] = counts.unpublished;
 			res.counts['Preguntas comentadas'] = counts.commented;
 			res.counts['Media de comentarios por pregunta'] = 
 				(counts.comments / counts.quizes).toFixed(2);		
