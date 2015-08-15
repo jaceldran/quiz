@@ -46,7 +46,7 @@ app.use( function(req, res, next) {
 	if (req.session.user) {
 
 		var username = req.session.user.username;
-		var limit = 1*60*1000;
+		var limit = 2*60*1000;
 		var now = new Date().getTime();	
 		
 		// calcular límite de caducidad (en ms) a partir del 
