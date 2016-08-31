@@ -1,3 +1,3 @@
 # quiz
 
-Ejercicio para curso node.js en Miriadax.
+Ejercicio práctico para curso node.js en Miriadax.
